@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Meu Dashboard Neon App</title>
+    <style>
+        /* Variáveis de cores tom sobre tom - Verde Neon e Cyberpunk Dark */
+        :root {
+            --bg-darkest: #040d06;       /* Fundo profundo do celular */
+            --bg-app-container: #0b1a0e; /* Fundo da tela do app */
+            --green-dim: #13321b;        /* Verde escuro para bordas/detalhes */
+            --green-glow: #00ff66;       /* O verde neon brilhante clássico */
+            --green-text: #adffd1;       /* Texto verde claro suave de alta leitura */
+            --card-bg: #092211;          /* Fundo dos botões (tom sobre tom) */
+            --card-hover: #143d1f;       /* Fundo do botão ao passar o mouse */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-darkest);
+            color: var(--green-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        /* Container simulando a proporção e visual de uma tela de celular */
+        .phone-wrapper {
+            width: 100%;
+            max-width: 410px;
+            background-color: var(--bg-app-container);
+            border: 2px solid var(--green-dim);
+            border-radius: 32px;
+            padding: 25px 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.05), inset 0 0 15px rgba(0, 255, 102, 0.02);
+            display: flex;
+            flex-direction: column;
+            min-height: 780px;
+        }
+
+        /* Barra de status fictícia superior do celular */
+        .phone-status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: rgba(173, 255, 209, 0.4);
+            margin-bottom: 25px;
+            padding: 0 5px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .status-icons {
+            display: flex;
+            gap: 6px;
+        }
+
+        /* Cabeçalho do Dashboard */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--green-glow);
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            font-size: 0.85rem;
+            color: rgba(173, 255, 209, 0.6);
+        }
+
+        /* Grade de Aplicativos / Botões Clicáveis */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 colunas de apps igual celular */
+            gap: 16px;
+            flex-grow: 1;
+            align-content: start;
+        }
+
+        /* Estilo de cada botão "App" */
+        .app-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--green-text);
+            transition: all 0.2s ease;
+        }
+
+        /* O ícone quadrado do app (Tom sobre tom com brilho neon) */
+        .app-icon {
+            width: 68px;
+            height: 68px;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Nome do aplicativo abaixo do ícone */
+        .app-label {
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            color: rgba(173, 255, 209, 0.85);
+        }
+
+        /* Efeitos de Hover e Toque (Feedback visual do botão) */
+        .app-button:hover .app-icon {
+            background-color: var(--card-hover);
+            border-color: var(--green-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 0 12px rgba(0, 255, 102, 0.25);
+        }
+
+        .app-button:active .app-icon {
+            transform: scale(0.95);
+        }
+
+        /* Rodapé / Barra inferior de navegação do celular */
+        .phone-nav-bar {
+            margin-top: auto;
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+        }
+
+        .home-indicator {
+            width: 120px;
+            height: 4px;
+            background-color: rgba(0, 255, 102, 0.2);
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container estilo Celular -->
+    <div class="phone-wrapper">
+        
+        <!-- Barra superior fictícia (Hora, Redes) -->
+        <div class="phone-status-bar">
+            <span>20:30</span>
+            <div class="status-icons">
+                <span>5G</span>
+                <span>100%</span>
+            </div>
+        </div>
+
+        <!-- Cabeçalho -->
+        <header>
+            <h1>MY DASHBOARD</h1>
+            <p>Toque para abrir os links rápidos</p>
+        </header>
+
+        <!-- Grade de Apps (Aqui você adiciona ou edita os links) -->
+        <main class="app-grid">
+
+            <!-- APP 1 -->
+            <!-- Para editar: altere o href="" com o seu link, o emoji dentro de app-icon, e o texto em app-label -->
+            <a href="https://rule34.xxx/index.php?page=favorites&s=view&id=5394277" target="_blank" class="app-button">
+                <div class="app-icon">📐</div>
+                <div class="app-label">Rule 34</div>
+            </a>
+
+            <!-- APP 2 -->
+            <a href="https://www.sotwe.com/Lemon9189633832" target="_blank" class="app-button">
+                <div class="app-icon">✖️</div>
+                <div class="app-label">Sotwe</div>
+            </a>
+
+            <!-- APP 3 -->
+            <a href="https://sendvid.com/vzvzrkif?secret=2dd11902-3ea8-483b-87eb-2c5dfa29b6b1" target="_blank" class="app-button">
+                <div class="app-icon">📺</div>
+                <div class="app-label">Part 2</div>
+            </a>
+
+            <!-- APP 4 -->
+            <a href="https://sendvid.com/0bgtchte?secret=79596164-c28a-49ba-a520-57a86bdf2a32" target="_blank" class="app-button">
+                <div class="app-icon">📺</div>
+                <div class="app-label">Warhol</div>
+            </a>
+
+            <!-- APP 5 -->
+            <a href="https://sendvid.com/089ga7br?secret=5e1fb672-0ae2-486f-97f6-347945ca9b99" target="_blank" class="app-button">
+                <div class="app-icon">📺</div>
+                <div class="app-label">Jardel</div>
+            </a>
+
+            <!-- APP 6 -->
+            <a href="#" target="_blank" class="app-button">
+                <div class="app-icon">📂</div>
+                <div class="app-label">Link 06</div>
+            </a>
+
+            <!-- APP 7 -->
+            <a href="https://sendvid.com/dve0yq9z?secret=cf57a8b0-74e1-4aa5-9f69-9ad7d5a98f60" target="_blank" class="app-button">
+                <div class="app-icon">🔗</div>
+                <div class="app-label">Hot</div>
+            </a>
+
+            <!-- APP 8 -->
+            <a href="https://sendvid.com/xngx5c8u?secret=d06da530-bc63-476f-878b-831d0d9ca1b2" target="_blank" class="app-button">
+                <div class="app-icon">📺</div>
+                <div class="app-label">Gif</div>
+            </a>
+
+            <!-- APP 9 -->
+            <a href="https://www.gayporntube.com/video/1644027/naighty-couple-friends-homemade-room-fuck-sex-show-tube" target="_blank" class="app-button">
+                <div class="app-icon">Another</div>
+                <div class="app-label">Link 09</div>
+            </a>
+
+            <!-- Você pode copiar e colar blocos inteiros como esses acima para colocar quantos apps quiser! -->
+
+        </main>
+
+        <!-- Barra inferior estética de navegação -->
+        <div class="phone-nav-bar">
+            <div class="home-indicator"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>
