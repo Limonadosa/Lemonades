@@ -1,41 +1,195 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Dashboard Pessoal</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+
 <style>
 :root{
---primary:#738C9B;
---card:#000A35;
---bg:#000000;
---text:#C4C4C4;
+    --primary:#39ff14;
+    --primary-soft:#7fff4d;
+    --card:rgba(0,0,0,.65);
+    --bg:#050505;
+    --text:#e8ffe1;
 }
-body{margin:0;background:var(--bg);color:var(--text);font-family:Audiowide,sans-serif;padding:12px}
-header{text-align:center}
-#clock{font-size:2rem;margin:10px 0;color:var(--primary)}
-#search{width:100%;padding:12px;border:1px solid var(--primary);background:var(--card);color:var(--text);border-radius:10px}
-details{margin:12px 0}
-summary{color:var(--primary);font-size:1.1rem;cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px}
-.card{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text);background:var(--card);padding:10px;border-radius:12px;border:1px solid var(--primary)}
-.card:hover{box-shadow:0 0 10px var(--primary)}
-img{width:20px;height:20px}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    padding:12px;
+    font-family:Audiowide,sans-serif;
+    color:var(--text);
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.55),
+            rgba(0,0,0,.75)
+        ),
+        url("lemon.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+header{
+    text-align:center;
+    max-width:900px;
+    margin:auto;
+}
+
+h1{
+    color:var(--primary);
+    text-shadow:
+        0 0 10px var(--primary),
+        0 0 20px var(--primary);
+}
+
+#clock{
+    font-size:2rem;
+    margin:15px 0;
+    color:var(--primary);
+    text-shadow:
+        0 0 10px var(--primary),
+        0 0 20px var(--primary);
+}
+
+/* Pesquisa Google */
+#google-search{
+    width:100%;
+    padding:14px;
+    margin-bottom:12px;
+    border-radius:12px;
+    border:1px solid var(--primary);
+    background:var(--card);
+    color:var(--text);
+    backdrop-filter:blur(8px);
+    outline:none;
+    font-family:inherit;
+}
+
+#google-search:focus{
+    box-shadow:0 0 20px var(--primary);
+}
+
+/* Pesquisa de atalhos */
+#search{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid var(--primary);
+    background:var(--card);
+    color:var(--text);
+    backdrop-filter:blur(8px);
+    outline:none;
+    font-family:inherit;
+}
+
+#search:focus{
+    box-shadow:0 0 20px var(--primary);
+}
+
+details{
+    max-width:1200px;
+    margin:20px auto;
+}
+
+summary{
+    cursor:pointer;
+    color:var(--primary);
+    font-size:1.1rem;
+    margin-bottom:10px;
+    text-shadow:0 0 10px var(--primary);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+    gap:12px;
+    margin-top:10px;
+}
+
+.card{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    text-decoration:none;
+    color:var(--text);
+
+    padding:12px;
+
+    background:var(--card);
+    backdrop-filter:blur(10px);
+
+    border-radius:14px;
+    border:1px solid rgba(57,255,20,.35);
+
+    transition:.25s ease;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 10px var(--primary),
+        0 0 25px rgba(57,255,20,.5);
+}
+
+.card img{
+    width:24px;
+    height:24px;
+}
+
+footer{
+    text-align:center;
+    margin-top:30px;
+    opacity:.8;
+    font-size:.8rem;
+}
 </style>
+
 </head>
+
 <body>
+
 <header>
-<h1>Dashboard</h1>
+    <h1>🍋 Lemonades</h1>
+
 <div id="clock"></div>
-<input id="search" placeholder="Pesquisar atalhos...">
+
+<form action="https://www.google.com/search" method="GET" target="_blank">
+    <input
+        id="google-search"
+        name="q"
+        placeholder="Pesquisar no Google..."
+        autocomplete="off">
+</form>
+
+<input
+    id="search"
+    placeholder="Filtrar atalhos..."
+    autocomplete="off">
+
 </header>
 
-<details open><summary>Todos os Links</summary><div class="grid" id="links"></div></details>
+<details open>
+    <summary>Todos os Links</summary>
+    <div class="grid" id="links"></div>
+</details>
 
 <script>
-const data=[
-["PlaySearch","https://playsearch.kaki87.net/"],
+const data = [
+    ["PlaySearch","https://playsearch.kaki87.net/"],
 ["Rule 34","https://rule34.xxx/index.php?page=favorites&s=view&id=5394277"],
 ["X","https://www.sotwe.com/Lemon9189633832"],
 ["Part 2","https://sendvid.com/vzvzrkif?secret=2dd11902-3ea8-483b-87eb-2c5dfa29b6b1"],
@@ -46,25 +200,48 @@ const data=[
 ["Red Gif","https://sendvid.com/xngx5c8u?secret=d06da530-bc63-476f-878b-831d0d9ca1b2"],
 ];
 
-const container=document.getElementById("links");
+const container = document.getElementById("links");
 
-function render(filter=""){
-container.innerHTML="";
-data.filter(([n])=>n.toLowerCase().includes(filter.toLowerCase()))
-.forEach(([name,url])=>{
-const a=document.createElement("a");
-a.href=url;a.className="card";
-a.innerHTML=`<img src="https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=64">${name}`;
-container.appendChild(a);
-});
+function render(filter = ""){
+    container.innerHTML = "";
+
+    data
+    .filter(([name]) =>
+        name.toLowerCase().includes(filter.toLowerCase())
+    )
+    .forEach(([name,url]) => {
+
+        const a = document.createElement("a");
+
+        a.href = url;
+        a.target = "_blank";
+        a.className = "card";
+
+        a.innerHTML = `
+            <img src="https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=64">
+            <span>${name}</span>
+        `;
+
+        container.appendChild(a);
+    });
 }
+
 render();
 
-document.getElementById("search").addEventListener("input",e=>render(e.target.value));
+document
+.getElementById("search")
+.addEventListener("input", e => {
+    render(e.target.value);
+});
 
-setInterval(()=>{
-document.getElementById("clock").textContent=new Date().toLocaleTimeString("pt-BR");
-},1000);
+function updateClock(){
+    document.getElementById("clock").textContent =
+        new Date().toLocaleTimeString("pt-BR");
+}
+
+updateClock();
+setInterval(updateClock, 1000);
 </script>
+
 </body>
 </html>
