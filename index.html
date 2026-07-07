@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -44,20 +43,12 @@ body{
 header{
     text-align:center;
     max-width:900px;
-    margin:auto;
+    margin:20px auto;
 }
 
 h1{
     color:var(--primary);
-    text-shadow:
-        0 0 10px var(--primary),
-        0 0 20px var(--primary);
-}
-
-#clock{
-    font-size:2rem;
-    margin:15px 0;
-    color:var(--primary);
+    margin-bottom:25px;
     text-shadow:
         0 0 10px var(--primary),
         0 0 20px var(--primary);
@@ -67,7 +58,7 @@ h1{
 #google-search{
     width:100%;
     padding:14px;
-    margin-bottom:12px;
+    margin-bottom:20px;
     border-radius:12px;
     border:1px solid var(--primary);
     background:var(--card);
@@ -81,23 +72,6 @@ h1{
     box-shadow:0 0 20px var(--primary);
 }
 
-/* Pesquisa de atalhos */
-#search{
-    width:100%;
-    padding:14px;
-    border-radius:12px;
-    border:1px solid var(--primary);
-    background:var(--card);
-    color:var(--text);
-    backdrop-filter:blur(8px);
-    outline:none;
-    font-family:inherit;
-}
-
-#search:focus{
-    box-shadow:0 0 20px var(--primary);
-}
-
 details{
     max-width:1200px;
     margin:20px auto;
@@ -107,47 +81,62 @@ summary{
     cursor:pointer;
     color:var(--primary);
     font-size:1.1rem;
-    margin-bottom:10px;
+    margin-bottom:20px;
     text-shadow:0 0 10px var(--primary);
 }
 
+/* Layout estilo grade de celular */
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
-    gap:12px;
+    grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
+    gap:20px 12px;
     margin-top:10px;
+    justify-items:center;
 }
 
+/* Card estilo App de Celular */
 .card{
     display:flex;
+    flex-direction:column;
     align-items:center;
-    gap:10px;
-
+    justify-content:center;
+    text-align:center;
     text-decoration:none;
     color:var(--text);
-
-    padding:12px;
-
+    width:85px;
+    padding:10px 6px;
     background:var(--card);
     backdrop-filter:blur(10px);
-
-    border-radius:14px;
-    border:1px solid rgba(57,255,20,.35);
-
+    border-radius:16px;
+    border:1px solid rgba(57,255,20,.2);
     transition:.25s ease;
 }
 
 .card:hover{
-    transform:translateY(-3px);
-
+    transform:translateY(-4px);
     box-shadow:
         0 0 10px var(--primary),
-        0 0 25px rgba(57,255,20,.5);
+        0 0 20px rgba(57,255,20,.4);
+    border-color:var(--primary);
 }
 
+/* Ícone menor e proporcional */
 .card img{
-    width:24px;
-    height:24px;
+    width:32px;
+    height:32px;
+    margin-bottom:8px;
+    object-fit:contain;
+}
+
+/* Nome pequeno embaixo */
+.card span{
+    font-size:0.65rem;
+    word-break:break-word;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    line-height:1.2;
 }
 
 footer{
@@ -157,7 +146,6 @@ footer{
     font-size:.8rem;
 }
 </style>
-
 </head>
 
 <body>
@@ -165,21 +153,13 @@ footer{
 <header>
     <h1>🍋 Lemonades</h1>
 
-<div id="clock"></div>
-
-<form action="https://www.google.com/search" method="GET" target="_blank">
-    <input
-        id="google-search"
-        name="q"
-        placeholder="Pesquisar no Google..."
-        autocomplete="off">
-</form>
-
-<input
-    id="search"
-    placeholder="Filtrar atalhos..."
-    autocomplete="off">
-
+    <form action="https://www.google.com/search" method="GET" target="_blank">
+        <input
+            id="google-search"
+            name="q"
+            placeholder="Pesquisar no Google..."
+            autocomplete="off">
+    </form>
 </header>
 
 <details open>
@@ -188,8 +168,8 @@ footer{
 </details>
 
 <script>
+// Mantido o formato original para atualizar facilmente
 const data = [
-    ["PlaySearch","https://playsearch.kaki87.net/"],
 ["Rule 34","https://rule34.xxx/index.php?page=favorites&s=view&id=5394277"],
 ["X","https://www.sotwe.com/Lemon9189633832"],
 ["Part 2","https://sendvid.com/vzvzrkif?secret=2dd11902-3ea8-483b-87eb-2c5dfa29b6b1"],
@@ -202,49 +182,37 @@ const data = [
 ["Hentai yaoi","https://limonadosa.github.io/Fav/"],
 ["Redgifs","https://www.redgifs.com/users/limond/collections/bfd1d3f71a"],
 ["XG","https://www.videosxgays.com/pt/pornstars/rudy-bodlak"],
+["equal","https://codeshack.io/html-viewer/#share=tVjrktu2Ff6vp0Dp1JY84k13ccXdOrbjpGOnHnfTJuO4zSFxSMICCRoAddkdP0Enz9Dp9Ed_9Sn8Qn2EDnjRSrve5Een1IxEngN8ODj4zoVa_ebZH55e_vD6Ocl0zs97K_NDOBRpaJXa_vKNZWQI9Ly3ylEDiTOQCnVofXf5lb2wOnEBOYbWhuG2FFJbJBaFxkKH1pZRnYUUNyxGu34YsoJpBtxWMXAMfYOhmeZ4_gxUFgmQlLxGpQTwldsoer0VZ8WaZBKT0Mq0LlXguokotHJSIVKOUDLlxCJ3Y6VGFwnkjO_DJxVlYssoPqRMlRz2odpCaRGJPLSU3nNUGaK2DH79eN4LpBD6ukcIIbZdSpaD3AcPxssk8Sdnp2JbiUQHD-ZJkkxop4tB0kCmEfS9ofk4s-mg00Vp8MCbmk8n0bjTwQNcJAn6Z72Pvd7jZulI7GzFrliRBpGQFKUdiV09IBJ034zJQaasCLwGK2eFnSFLMx34nrfJGmkJlBoQf1TuGonxmd24Jzi4Z6igULZCyZJmVCy4kMEGZL-xcXDWa-yCeJ1KURU0qJ_NxVmBIO1UAmVY6P5BYa5jT0yng-G9yvl0cNAdDask71scc1E478vUumuHcRMGsdigPLutKoVimokiiLHQn9FLLBF0UIj27s4A0BriLMdCBwnbIa1PwAQDyuYMjG9s4Cw9XSOHXUP1YOl5nefb8xp55Y5ApUUD5l_fcXhLr8HxNDsSWos8GE07uHpplQEV25uz8IhHfLPAKdLwZMDo7oDaFvexCbsPFVNAXtRBRR67vQdNfNkKQcZZY22zN9_zfnuLZpPTzR6sPjihZbPhSqWOaNnIA7_cESU4o3fsu8W-Rm2CbXAvY7spVIrSThjXKIOIV7K_KHetWlTa0DcoRIF344MVGUqma-ecuiFIRFypo1htzuGXvEtRA-Pq-hZB_NGvMERVuQFpaVJJJWRQCnZDtvupU--ljg_f8SXmv3w0x4S6h0cdTV7CXlSaoNKMC2IiHwlFEiOvOEjDGieVjDY2t6k3MJJmJXNna8xLDhrtWPAqL1TQxGDfbNycFh_mrMhh11965W7oJ3LQ7iqFsnHRDXvaLWlRBv5hP-8rpVmyt5nGXB3Cs9nAU1NjWvOflKUx_umR8YZXp8YnHLsEynFnUyYxblJLbX2jqhPBrfWOLWlr4onungxSiynGQkK9zA1B7yF6w6bFIT0cQtJ4anYIs1-IoM-Gipk--Gzozu4N3TqtT-fD0XQ6HHlDZ9QCaAlFm5Cd0VQRBIX1gdT-DjKTw69vRiZC5kF9Z2jyQ9-eHJmy-x9S3237Jqcb_Hw8Nbz59HMsCiQ5FkISJKUUpZAxEwXwA3EIy9PjNDk-0LStz-PbvG1DcdGJRfQeY20nTAeGMsCKbv1vRY6kxA8VFoJgHgHbiZuFVQnF9a3I95zZ9BD6WyGpHUmEdVB_20ZwdkJ0e4vRmumm36iblFZg8qQdc8jLYHSqMachpKn9wQalZjHwdh8blAkX2yBjlGIbJDVO16k4o3pniRD6V0vqIcTHhxAXJcRM7wNncTvhOYt60x97K7dt7FZu08X2VqaFMr9NIT-vZ64y__w_f__5b-Sl6TWAolq5mX_edBsrQ0UCdcDfdJ_b7bbtPeu-sykMFslRZ4KG1ovnlxbRIFPTK_814lCsrfMDGVesKCt90g0xGlonRcY6UTcN9odTYckhxkxwijK0uuItSSHaAu44zukEk11jkZccNYaWSJLWppVr9th5yXilt2orFhElFu2othidXwoqFBGKvGTFWq3cTt6MomxDYg5KhZZJ9Va9NdO_K-t85VK2Meu06HXrHUtW6vOe65JXUGhGBRHE2ANaECFZykx8lSCBgK6AsyuQJIGYcdOaYS8WhdKEggYSkre1DW-t1xz2f2z8OCSHQzMcb7zrrGHNFnOnQO1a74btrDcVRzKeWMPDDFlxHE-c3W7nsoLizimz8qKEFMMENkIyjeqhCs2Lz0NGw-l4ORnN5wbwrfX9EYxhixJ625ClZtnSXyxn4_FiPGqGvwapyehojsKCbhitZ2yuNldyzZILhbFEHY4o9f2lN7LHCAt7shhH9mKOkT2KpzSB0TKaRX4D-2eQmeD3wHpRquNMYwc7X06XM382sePRAuzJMgIbpiPPns5hMYtoMoLO2t-DpHgv7GKZwjySHewU_SSazUe2BziyJ4tZYi_nycweT-bLyTSGZbRcNrCXwLgo7oGlG_T2H5ZXHWycGLsiz55P0LcnAFN7mcyW9hLonE5huUhmXgP7LeQY34O6K9LdNF5UHSr1ZhSmY8-O4tnYnsxnib2YLyJ7MfapR5cx-FHrgzdIyQuW_D9wKdOkKtURdAbxOqcOE-7v7D99_723nGeX-6exvPzuyXs9j6Mn7tfrbPl0_eHVq7SB-RpN8SB7EOwIh7M6wwkFTsp0VkUG8ivYuIe1U5aoW9SVjbTeV6VQqgaGurHgvGmFlBsl1KfjZO5Dy_8Xt1A2jKJQuxT2DVKp3VLIQmmQypUV3duRoBzWZnqv9-6s14Z2WwVRkpBQEVcm7J0U9XOO5vbL_Te03yYY84aYVEVtEZFYUJT9AelesgxYIiE1s46xYomg8Vn7-FU7ot-9bprU4iRCPoc46_ffmlQ8NK-m7wYkPG_BbxaAu8itoX0LrLbZqJOxY_7PIKGBOpY2VYOEpKsbx8o6sRo6G70p-1ZrpLlclzzfaQmMCEJF_unfBROmua2TKTFdqwaChLO8hFtWU5EDKxpjHIl1Zem7f-nX53cR_Oj-6A4u-tvt9kdncOEOyaNHA0eVnOn-I_fR4K337sgMcFhRoPz68tVLEpKfTirQiuUpUTK-v5CO3AQ2zFh10RgVfnHd3Hx8qK7C2cQiwHVoWYQLME1uaHG42h9V16ZWlVCcf3FtDuvjyq2fDgN-uvFoRwcHyhIL-jRjnPahPaWPHQMODDwZ1s1t-0OXfFOwmNUFikDLPnYFn_716Z-CyE__KBmFXkfKM9ObtJWvt3KbrmTl1n_D_Rc"]
+
+
 ];
 
 const container = document.getElementById("links");
 
-function render(filter = ""){
-    container.innerHTML = "";
+function render() {
+    const fragment = document.createDocumentFragment();
 
-    data
-    .filter(([name]) =>
-        name.toLowerCase().includes(filter.toLowerCase())
-    )
-    .forEach(([name,url]) => {
-
+    data.forEach(([name, url]) => {
         const a = document.createElement("a");
-
         a.href = url;
         a.target = "_blank";
         a.className = "card";
 
+        // Extrai o domínio de forma direta e limpa
+        const domain = url.replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0];
+
         a.innerHTML = `
-            <img src="https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=64">
+            <img src="https://www.google.com/s2/favicons?domain=${domain}&sz=64" alt="" loading="lazy">
             <span>${name}</span>
         `;
-
-        container.appendChild(a);
+        fragment.appendChild(a);
     });
+
+    container.appendChild(fragment);
 }
 
+// Inicializa a renderização rápida
 render();
-
-document
-.getElementById("search")
-.addEventListener("input", e => {
-    render(e.target.value);
-});
-
-function updateClock(){
-    document.getElementById("clock").textContent =
-        new Date().toLocaleTimeString("pt-BR");
-}
-
-updateClock();
-setInterval(updateClock, 1000);
 </script>
 
 </body>
